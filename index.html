@@ -1,262 +1,830 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uranus Fazry MLBB Portal | Fanny P.Ace</title>
-    <!-- Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome (Ikon) --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Library untuk Fungsionalitas (TETAP SAMA) --><script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <title>MLBB Portal | Fanny P.Ace by Uranusfazry</title>
+    
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f608.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.5.0/lz-string.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 
     <style>
-        @import url(https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap);#particle-canvas,body::after{left:0;width:100%;height:100%;pointer-events:none;position:fixed;top:0}#mobile-menu,.dropdown{backdrop-filter:blur(20px);padding:1.5rem}body,select option{background:var(--dark-bg)}:root{--mlbb-blue:#00d4ff;--mlbb-purple:#9d4edd;--mlbb-pink:#ff006e;--mlbb-dark:#0a0014;--mlbb-darker:#1a0033;--neon-blue:#00d4ff;--neon-pink:#ff006e;--neon-purple:#9d4edd;--dark-bg:#0a0014;--darker-bg:#1a0033}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Chakra Petch',sans-serif;color:#fff;min-height:100vh;overflow-x:hidden;position:relative;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}.font-exo2,.font-orbitron{font-family:Rajdhani,sans-serif}.font-rajdhani{font-family:'Chakra Petch',sans-serif}#bg-container{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;overflow:hidden}.bg-media{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;filter:brightness(.6) saturate(1.2);transition:transform .5s,width .5s,height .5s,opacity .5s,filter .5s;will-change:transform,opacity,filter}.btn-neon,.btn-secondary,.nav-item,.navbar{transition:.3s}#bg-video,body.light-mode #bg-video{opacity:.35;z-index:1}#bg-image{opacity:0;z-index:0}body.light-mode #bg-image{opacity:1!important;filter:saturate(1.15)}@media (min-width:1024px){.bg-media{width:100vh;height:100vw;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-90deg)}}#particle-canvas{z-index:-1}body::after{content:'';background:linear-gradient(90deg,transparent 0,rgba(157,78,221,.03) 50%,transparent 100%),repeating-linear-gradient(0deg,rgba(0,212,255,.03) 0,transparent 2px,transparent 4px,rgba(0,212,255,.03) 6px);z-index:1;animation:8s linear infinite scanlines}@keyframes scanlines{0%{transform:translateY(0)}100%{transform:translateY(20px)}}.content-layer{position:relative;z-index:10}main.content-layer{flex-grow:1}.neon-text-blue{color:var(--mlbb-blue);text-shadow:0 0 10px var(--mlbb-blue)}.neon-text-pink{color:var(--mlbb-pink);text-shadow:0 0 8px var(--mlbb-pink),0 0 16px rgba(255,0,110,.7)}.neon-text-purple,footer p:last-child{text-shadow:0 0 8px var(--mlbb-purple)}.neon-text-purple{color:var(--mlbb-purple)}.glitch-effect{position:relative;font-family:Rajdhani,sans-serif;font-weight:900;font-size:4rem;line-height:1;text-transform:uppercase;letter-spacing:3px;color:#fff;text-shadow:0 0 10px var(--mlbb-blue),0 0 20px var(--mlbb-blue),0 0 40px var(--mlbb-purple);animation:5s infinite glitch-text}#logo-container span,.btn-neon{letter-spacing:2px;text-transform:uppercase}#time,.btn-neon,.btn-neon-blue{color:var(--mlbb-blue)}@keyframes glitch-text{0%,100%{text-shadow:0 0 10px var(--mlbb-blue),0 0 20px var(--mlbb-blue),0 0 40px var(--mlbb-purple)}25%{text-shadow:2px 2px 10px var(--mlbb-pink),-2px -2px 20px var(--mlbb-blue)}50%{text-shadow:-2px 2px 15px var(--mlbb-purple),2px -2px 25px var(--mlbb-pink)}75%{text-shadow:2px -2px 10px var(--mlbb-blue),-2px 2px 20px var(--mlbb-purple)}}.navbar{background:rgba(26,0,51,.85);backdrop-filter:blur(20px);border-bottom:2px solid transparent;border-image:linear-gradient(90deg,var(--mlbb-blue),var(--mlbb-purple),var(--mlbb-pink)) 1;box-shadow:0 5px 30px rgba(157,78,221,.3)}.navbar .container>div{height:70px;transition:height .3s}@media (min-width:768px){.navbar .container>div{height:70px}}#logo-container{position:relative;padding:.5rem}#logo-container img{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--mlbb-blue),var(--mlbb-purple));box-shadow:0 0 25px var(--mlbb-purple),inset 0 0 15px rgba(255,255,255,.3);animation:2s ease-in-out infinite pulse-glow}@keyframes pulse-glow{0%,100%{box-shadow:0 0 25px var(--mlbb-purple),inset 0 0 15px rgba(255,255,255,.3)}50%{box-shadow:0 0 40px var(--mlbb-blue),inset 0 0 25px rgba(255,255,255,.5)}}#logo-container span{font-family:Rajdhani,sans-serif;font-weight:700;font-size:1.5rem;background:linear-gradient(90deg,var(--mlbb-blue),var(--mlbb-pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 10px rgba(0, 212, 255, .5))}.nav-item{position:relative}.nav-item:hover i,.nav-item:hover span{color:var(--mlbb-pink);text-shadow:0 0 10px var(--mlbb-pink)}.nav-item::after{content:'';position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:0;height:2px;background:linear-gradient(90deg,var(--mlbb-blue),var(--mlbb-purple));transition:width .3s;border-radius:1px}.nav-item:hover::after{width:100%}.dropdown{display:none;position:absolute;background:rgba(26,0,51,.95);border:2px solid var(--mlbb-purple);border-radius:15px;box-shadow:0 10px 40px rgba(157,78,221,.5);min-width:320px;margin-top:.75rem;animation:.3s slideDown}.btn-neon,.portal-card{position:relative;overflow:hidden}#mobile-menu-overlay,.modal-overlay,.portal-card{backdrop-filter:blur(10px)}@keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}.group:hover .dropdown{display:block}#mobile-menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:55;transition:opacity .3s}#mobile-menu{position:fixed;top:0;right:0;height:100%;width:80%;max-width:300px;background:rgba(26,0,51,.98);border-left:2px solid var(--mlbb-purple);z-index:60;transform:translateX(100%);transition:transform .3s cubic-bezier(.175, .885, .32, 1.275);display:flex;flex-direction:column}#mobile-menu.open{transform:translateX(0)}.btn-neon{padding:.75rem 1.5rem;background:rgba(157,78,221,.1);border:2px solid var(--mlbb-purple);font-weight:600;cursor:pointer;z-index:1;display:inline-flex;align-items:center;justify-content:center;border-radius:.5rem;font-family:Rajdhani,sans-serif;text-shadow:0 0 5px currentColor}#time,.btn-secondary{font-weight:700;font-family:Rajdhani,sans-serif}.btn-neon::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(0,212,255,.3),transparent);transition:left .5s;z-index:-1}.btn-neon-blue:hover,.btn-neon:hover{background:rgba(0,212,255,.2);border-color:var(--mlbb-blue);color:#fff}.btn-neon:hover{box-shadow:0 0 20px var(--mlbb-blue),inset 0 0 20px rgba(0,212,255,.2);transform:translateY(-2px);text-shadow:none}.btn-neon:hover::before{left:100%}.btn-neon:active{transform:translateY(0) scale(.95);box-shadow:0 0 5px currentColor;transition-duration:.1s}.btn-neon-blue{background:rgba(0,212,255,.1);border-color:var(--mlbb-blue)}.btn-neon-blue:hover{box-shadow:0 0 20px var(--mlbb-blue)}.btn-neon-pink{background:rgba(255,0,110,.1);border-color:var(--mlbb-pink);color:var(--mlbb-pink)}#date,.btn-neon-purple,footer p:last-child{color:var(--mlbb-purple)}.btn-neon-pink:hover{background:rgba(255,0,110,.2);border-color:var(--mlbb-pink);color:#fff;box-shadow:0 0 20px var(--mlbb-pink)}.btn-neon-purple{background:rgba(157,78,221,.1);border-color:var(--mlbb-purple)}.btn-neon-purple:hover{background:rgba(157,78,221,.2);border-color:var(--mlbb-purple);color:#fff;box-shadow:0 0 20px var(--mlbb-purple)}.btn-secondary{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);border-radius:.5rem;padding:.5rem 1rem;text-transform:uppercase}.btn-secondary:hover{background:rgba(255,255,255,.2);border-color:var(--mlbb-pink);color:var(--mlbb-pink)}.portal-card{background:linear-gradient(135deg,rgba(26,0,51,.8),rgba(10,0,20,.9));border:2px solid transparent;border-radius:15px;padding:2rem;transition:.4s;height:100%}.portal-card::before{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;background:linear-gradient(45deg,var(--mlbb-blue),var(--mlbb-purple),var(--mlbb-pink));border-radius:15px;z-index:-1;opacity:0;transition:opacity .4s}.portal-card:hover .delete-btn,.portal-card:hover::before{opacity:1}.portal-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 15px 40px currentColor}.portal-card .z-10 i,.portal-card .z-10 img{font-size:3rem;margin-bottom:1rem;filter:drop-shadow(0 0 15px currentColor);animation:3s ease-in-out infinite float;height:48px;width:48px;object-fit:contain;margin-left:auto;margin-right:auto}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}.delete-btn{position:absolute;top:.75rem;right:.75rem;color:rgba(255,100,100,.5);background:#111827;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;transition:.3s;z-index:20;opacity:.7}.delete-btn:hover{color:var(--mlbb-pink);background:#000;transform:scale(1.1);text-shadow:0 0 10px var(--mlbb-pink)}.profile{width:150px;height:150px;border-radius:50%;border:4px solid var(--mlbb-pink);box-shadow:0 0 30px var(--mlbb-pink),0 0 50px var(--mlbb-purple),inset 0 0 20px rgba(255,0,110,.3);overflow:hidden;margin:0 auto 2rem;position:relative;animation:4s linear infinite rotate-border}.modal-content,.time-container{border:2px solid var(--mlbb-purple)}@keyframes rotate-border{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}.profile video{width:100%;height:100%;object-fit:cover;position:relative;z-index:1;object-position:50% 25%;will-change:transform}.time-container{background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(157,78,221,.1));border-radius:20px;padding:1.5rem 3rem;box-shadow:0 0 30px rgba(157,78,221,.3),inset 0 0 20px rgba(0,212,255,.1);position:relative;overflow:hidden}#time{font-size:3rem;text-shadow:0 0 20px var(--mlbb-blue)}#date,footer p:first-child,input,select,textarea{font-family:'Chakra Petch',sans-serif}#date{font-size:1.2rem;text-shadow:0 0 10px var(--mlbb-purple)}.modal-overlay{background:rgba(0,0,0,.9);animation:.3s fadeIn}.modal-content{background:linear-gradient(135deg,rgba(26,0,51,.95),rgba(10,0,20,.95));border-radius:20px;box-shadow:0 0 50px rgba(157,78,221,.5);animation:.3s cubic-bezier(.175,.885,.32,1.275) slideIn}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes slideIn{from{transform:translateY(-30px) scale(.95);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}input,select,textarea{background:rgba(10,0,20,.8)!important;border:2px solid var(--mlbb-purple);color:#fff;padding:.75rem;border-radius:10px;transition:.3s}input:focus,select:focus,textarea:focus{outline:0;border-color:var(--mlbb-blue);box-shadow:0 0 20px rgba(0,212,255,.3);background:rgba(10,0,20,.9)!important}select option{color:#fff;padding:8px}::placeholder{color:rgba(255,255,255,.4);opacity:1}.modal-content code{background:rgba(0,0,0,.3);color:var(--mlbb-pink);padding:2px 5px;border-radius:4px;font-family:Rajdhani,sans-serif}::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--mlbb-darker)}::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--mlbb-blue),var(--mlbb-purple));border-radius:10px}::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--mlbb-purple),var(--mlbb-pink))}footer{background:rgba(5,0,8,.8);border-top:1px solid rgba(0,212,255,.2);margin-top:auto;height:60px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-left:1rem;padding-right:1rem}footer p:first-child{font-size:13px}footer p:last-child{font-family:Rajdhani,sans-serif}@media (max-width:768px){.glitch-effect{font-size:2.5rem}#time{font-size:2rem}#logo-container span{font-size:1.2rem}}
+        @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --mlbb-blue: #00d4ff;
+            --mlbb-purple: #9d4edd;
+            --mlbb-pink: #ff006e;
+            --mlbb-dark: #0a0014;
+            --mlbb-darker: #1a0033;
+            
+            --success-green: #00ffc8; 
+            --error-red: #ff0055;
+            --gold: #00d4ff; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: 'Chakra Petch', sans-serif;
+            background: var(--mlbb-dark);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #bg-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; overflow: hidden;
+        }
+
+        .bg-media {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            filter: brightness(0.5); 
+            transition: opacity 0.5s ease;
+        }
+
+        #bg-video { opacity: 0.35; z-index: 1; }
+        #bg-image { opacity: 0; z-index: 0; }
+
+        body.light-mode #bg-image { opacity: 1 !important; filter: none; }
+        body.light-mode #bg-video { opacity: 0; z-index: 1; }
+        body.light-mode { background: #e0e7ff; color: #1a0033; }
+        body.light-mode .navbar { background: rgba(255, 255, 255, 0.95); }
+        body.light-mode .portal-card { background: rgba(255, 255, 255, 0.9); border: 1px solid var(--mlbb-purple); }
+        body.light-mode h1, body.light-mode h2, body.light-mode h3 { color: #1a0033 !important; }
+
+        .content-layer { position: relative; z-index: 10; }
+        main.content-layer { flex-grow: 1; }
+
+        .font-orbitron { font-family: 'Rajdhani', sans-serif; }
+        .font-rajdhani { font-family: 'Chakra Petch', sans-serif; }
+
+        .navbar {
+            background: rgba(26, 0, 51, 0.95);
+            border-bottom: 1px solid var(--mlbb-purple);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-height { height: 70px; transition: height 0.3s ease; }
+        @media (min-width: 768px) { .navbar-height { height: 90px; } }
+
+        #logo-container img {
+            border-radius: 50%;
+        }
+
+        .dropdown {
+            background: rgba(26, 0, 51, 0.98);
+            border: 1px solid var(--mlbb-purple);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            animation: slideDown 0.2s ease;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #mobile-menu {
+            background: rgba(26, 0, 51, 1);
+            border-left: 1px solid var(--mlbb-blue);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-neon {
+            background: rgba(157, 78, 221, 0.2);
+            border: 1px solid var(--mlbb-purple);
+            color: var(--mlbb-blue);
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            position: relative; overflow: hidden;
+            border-radius: 0.5rem;
+        }
+        .btn-neon:hover {
+            background: rgba(0, 212, 255, 0.3);
+            border-color: var(--mlbb-blue);
+            color: white;
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white; transition: all 0.2s ease;
+            border-radius: 0.5rem; font-family: 'Rajdhani', sans-serif; font-weight: 700; text-transform: uppercase;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2); border-color: var(--mlbb-pink); color: var(--mlbb-pink);
+        }
+
+        .portal-card {
+            position: relative;
+            background: rgba(26, 0, 51, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: background 0.2s ease, transform 0.2s ease;
+            overflow: hidden;
+            height: 100%; display: flex; flex-direction: column;
+        }
+        .portal-card:hover {
+            transform: translateY(-2px);
+            background: rgba(40, 0, 80, 0.9);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .portal-card i, .portal-card img {
+            transition: transform 0.2s ease;
+        }
+        .portal-card:hover i, .portal-card:hover img { transform: scale(1.05); }
+
+        .lock-indicator {
+            position: absolute; top: 12px; left: 12px;
+            color: var(--mlbb-blue); background: rgba(0,0,0,0.8);
+            width: 32px; height: 32px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid var(--mlbb-blue); z-index: 20;
+        }
+
+        .delete-btn {
+            position: absolute; top: 12px; right: 12px;
+            color: rgba(255,255,255,0.7); background: #000;
+            width: 30px; height: 30px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; opacity: 0; border: 1px solid var(--mlbb-pink);
+        }
+        .portal-card:hover .delete-btn { opacity: 1; }
+        .delete-btn:hover { background: var(--mlbb-pink); color: #fff; }
+
+        .profile {
+            width: 150px; height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--mlbb-pink);
+            overflow: hidden; margin: 0 auto 2rem;
+            position: relative;
+            background: #000;
+        }
+        .profile video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; }
+
+        .clean-title {
+            font-family: 'Rajdhani', sans-serif; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 3px;
+            color: white;
+        }
+
+        input, textarea, select {
+            background: rgba(10, 0, 20, 0.8) !important;
+            border: 1px solid var(--mlbb-purple);
+            color: white; padding: 0.75rem; border-radius: 8px;
+            font-family: 'Chakra Petch', sans-serif;
+            width: 100%;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none; border-color: var(--mlbb-blue);
+        }
+        
+        .modal-overlay { background: rgba(0,0,0,0.9); }
+        .modal-content {
+            background: #1a0033;
+            border: 1px solid var(--mlbb-purple);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .notif-container {
+            position: fixed; top: 20px; right: 20px; z-index: 9999;
+            display: flex; flex-direction: column; gap: 15px; pointer-events: none;
+        }
+        .notif-toast {
+            min-width: 320px; background: #1a0033;
+            border-left: 4px solid var(--mlbb-blue);
+            border-radius: 8px; padding: 16px; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            display: flex; align-items: flex-start; gap: 15px;
+            transform: translateX(120%); transition: all 0.4s ease;
+            pointer-events: auto; overflow: hidden; position: relative;
+        }
+        .notif-toast.show { transform: translateX(0); }
+        .notif-toast.success { border-color: var(--success-green); }
+        .notif-toast.error { border-color: var(--error-red); }
     </style>
 </head>
 <body>
 
-    <!-- STRUKTUR HTML DARI KODE 1 (TIDAK BERUBAH) -->
-
-    <!-- Background & Partikel (Struktur HTML Sama) -->
     <div id="bg-container">
-        <!-- Video background -->
         <video id="bg-video" class="bg-media" autoplay muted playsinline>
             <source src="https://files.catbox.moe/q23pnv.mp4" type="video/mp4">
-            Your browser does not support the video tag.
         </video>
-        <!-- Gambar fallback yang sudah ada -->
-        <img id="bg-image" class="bg-media" src="https://i.imghippo.com/files/IL7574yM.jpg" alt="MLBB Fanny Background">
+        <img id="bg-image" class="bg-media" src="https://i.imghippo.com/files/IL7574yM.jpg" alt="Background" crossorigin="anonymous">
     </div>
-    <canvas id="particle-canvas"></canvas>
 
-    <!-- Navbar (Struktur HTML Refactor) -->
-    <nav class="navbar fixed top-0 left-0 right-0 z-50 content-layer">
+    <div id="notif-container" class="notif-container"></div>
+
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 content-layer transition-all duration-300">
         <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center">
-                <!-- Logo -->
-                <div id="logo-container" class="flex items-center cursor-pointer">
-                    <!-- [MODIFIKASI] class logo-pulse dihapus, style via #logo-container img -->
-                    <img src="https://i.imghippo.com/files/EePl9866XxI.png" alt="MLBB Nexus Logo" class="h-10 w-auto">
-                    <!-- [MODIFIKASI] class font-orbitron akan di-style ulang oleh CSS baru -->
-                    <span class="font-bold text-xl tracking-wider ml-3 font-orbitron">MLBB FANNY</span>
+            <div class="hx-nav-wrapper flex justify-between items-center h-[70px] md:h-[90px] transition-[height] duration-300 ease-in-out">
+                
+                <div id="logo-container" class="flex items-center gap-3 cursor-pointer select-none">
+                    <img src="https://i.imghippo.com/files/EePl9866XxI.png" alt="Logo" 
+                         class="h-10 w-10 md:h-12 md:w-12 rounded-full">
+                    <span class="font-bold text-lg md:text-xl tracking-wider font-orbitron text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500">MLBB FANNY</span>
                 </div>
 
-                <!-- Navigasi Desktop (Refactor) -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <!-- Tombol Pengaturan -->
-                    <div class="nav-item relative group">
-                        <button class="flex items-center space-x-2 neon-text-blue font-medium text-sm uppercase font-orbitron">
-                            <i class="fas fa-cog"></i>
-                            <span>Settings</span>
-                            <i class="fas fa-chevron-down text-xs transition-transform duration-300 group-hover:rotate-180"></i>
+                <div class="hidden md:flex items-center h-full">
+                    <div class="nav-item relative group h-full flex items-center px-2">
+                        <button class="flex items-center space-x-2 text-cyan-400 font-medium font-orbitron uppercase hover:text-white transition-colors">
+                            <i class="fas fa-bars"></i><span>Menu</span>
                         </button>
-                        <!-- Dropdown Menu (Refactor) -->
-                        <div class="dropdown absolute right-0 mt-2 w-80 rounded-lg p-4">
-                            <h3 class="text-sm neon-text-pink mb-3 uppercase tracking-wider font-orbitron">Portal Management</h3>
-                            <button onclick="showAddLinkModal()" class="btn-neon btn-neon-blue w-full text-sm mb-3">
-                                <i class="fas fa-plus mr-2"></i>Add New Portal
-                            </button>
-
-                            <h3 class="text-sm neon-text-blue mt-4 mb-3 uppercase tracking-wider font-orbitron">Data Management</h3>
-                            <div class="grid grid-cols-2 gap-3">
-                                <button onclick="importData()" class="btn-neon btn-neon-purple w-full text-xs"><i class="fas fa-upload mr-1"></i>Import</button>
-                                <button onclick="backupData()" class="btn-neon btn-neon-purple w-full text-xs"><i class="fas fa-download mr-1"></i>Backup</button>
+                        
+                        <div class="dropdown absolute right-0 top-[80%] mt-2 w-80 rounded-xl p-5 hidden group-hover:block origin-top-right">
+                            <h3 class="text-xs text-pink-500 mb-2 uppercase font-bold tracking-wider">Craft Portal</h3>
+                            <button onclick="showAddLinkModal()" class="btn-neon w-full text-sm mb-4 py-2"><i class="fas fa-plus mr-2"></i>New Portal</button>
+                            
+                            <h3 class="text-xs text-cyan-400 mb-2 uppercase font-bold tracking-wider">Data Vault</h3>
+                            <div class="grid grid-cols-2 gap-3 mb-4">
+                                <button onclick="importData()" class="btn-secondary text-xs py-2"><i class="fas fa-upload mr-1"></i>Import</button>
+                                <button onclick="backupData()" class="btn-secondary text-xs py-2"><i class="fas fa-download mr-1"></i>Backup</button>
                             </div>
 
-                            <h3 class="text-sm neon-text-pink mt-4 mb-3 uppercase tracking-wider font-orbitron">System Reset</h3>
-                            <button onclick="showConfirmationModal('Yakin ingin mereset semua pengaturan?', resetAllSettings)"
-                                    class="btn-neon btn-neon-pink w-full text-sm mb-3">
-                                <i class="fas fa-undo mr-2"></i>Reset All
-                            </button>
+                            <button onclick="generateSmartLink()" class="btn-secondary w-full text-sm mb-2 py-2"><i class="fas fa-qrcode mr-2"></i>Smart Link</button>
+                            <button onclick="showWhatsAppModal()" class="btn-secondary w-full text-sm mb-4 py-2"><i class="fab fa-whatsapp mr-2"></i>WA Generator</button>
+
+                            <h3 class="text-xs text-red-500 mb-2 uppercase font-bold tracking-wider">System</h3>
+                            <button onclick="showConfirmationModal('Reset all settings?', resetAllSettings)" class="btn-secondary w-full text-sm py-2 hover:border-red-500 hover:text-red-500"><i class="fas fa-skull mr-2"></i>Reset</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Tombol Menu Mobile (Ikon Baru) -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="neon-text-pink text-3xl focus:outline-none">
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-pink-500 text-2xl focus:outline-none hover:text-white transition-colors p-2">
                         <i class="fas fa-bars-staggered"></i>
                     </button>
                 </div>
+
             </div>
         </div>
     </nav>
 
-    <!-- Mobile Menu (Struktur HTML Refactor Total) -->
     <div id="mobile-menu-overlay" class="fixed inset-0 z-50 hidden md:hidden" onclick="closeMobileMenu()"></div>
-    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-4/5 max-w-xs z-[60] transform translate-x-full transition-transform duration-300 ease-in-out md:hidden p-6 flex flex-col space-y-4">
-        
-        <!-- Header Menu Mobile -->
-        <div class="flex justify-between items-center pb-4 border-b border-purple-500/30">
-            <span class="font-orbitron neon-text-blue text-lg">MENU</span>
-            <button onclick="closeMobileMenu()" class="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center neon-text-pink">
-                <i class="fas fa-times text-xl"></i>
-            </button>
+    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-[85%] max-w-xs z-[60] transform translate-x-full md:hidden p-6 flex flex-col shadow-2xl">
+        <div class="flex justify-between items-center pb-4 border-b border-purple-900 mb-6">
+            <span class="font-orbitron text-cyan-400 text-lg font-bold">SYSTEM MENU</span>
+            <button onclick="closeMobileMenu()" class="text-pink-500 text-xl"><i class="fas fa-times"></i></button>
         </div>
-
-        <!-- Konten Menu Mobile -->
-        <div class="flex-grow overflow-y-auto">
-            <h3 class="text-sm neon-text-pink mb-3 uppercase tracking-wider font-orbitron">Portal</h3>
-            <button onclick="showAddLinkModal(); closeMobileMenu();" class="btn-neon btn-neon-blue w-full text-sm mb-4">
-                <i class="fas fa-plus mr-2"></i>Add Portal
-            </button>
-
-            <h3 class="text-sm neon-text-blue mt-4 mb-3 uppercase tracking-wider font-orbitron">Data</h3>
-            <div class="grid grid-cols-2 gap-3 mb-4">
-                <button onclick="importData(); closeMobileMenu();" class="btn-neon btn-neon-purple w-full text-xs"><i class="fas fa-upload mr-1"></i>Import</button>
-                <button onclick="backupData(); closeMobileMenu();" class="btn-neon btn-neon-purple w-full text-xs"><i class="fas fa-download mr-1"></i>Backup</button>
+        <div class="flex-grow overflow-y-auto space-y-4">
+            <button onclick="showAddLinkModal(); closeMobileMenu();" class="btn-neon w-full py-3 text-sm"><i class="fas fa-plus mr-2"></i>Create Portal</button>
+            <div class="grid grid-cols-2 gap-3">
+                <button onclick="importData(); closeMobileMenu();" class="btn-secondary text-xs py-2"><i class="fas fa-upload mr-1"></i>Import</button>
+                <button onclick="backupData(); closeMobileMenu();" class="btn-secondary text-xs py-2"><i class="fas fa-download mr-1"></i>Backup</button>
             </div>
-
-            <h3 class="text-sm neon-text-pink mt-4 mb-3 uppercase tracking-wider font-orbitron">Sistem</h3>
-            <button onclick="showConfirmationModal('Yakin ingin mereset?', resetAllSettings); closeMobileMenu();"
-                    class="btn-neon btn-neon-pink w-full text-sm mb-4">
-                <i class="fas fa-undo mr-2"></i>Reset All
-            </button>
+            <button onclick="generateSmartLink(); closeMobileMenu();" class="btn-secondary w-full py-3 text-sm"><i class="fas fa-qrcode mr-2"></i>Smart Link</button>
+            <button onclick="showWhatsAppModal(); closeMobileMenu();" class="btn-secondary w-full py-3 text-sm"><i class="fab fa-whatsapp mr-2"></i>WA Generator</button>
+            <button onclick="showConfirmationModal('Factory Reset?', resetAllSettings); closeMobileMenu();" class="btn-secondary w-full py-3 text-sm text-red-400 border-red-900/50 mt-auto"><i class="fas fa-trash mr-2"></i>Reset System</button>
         </div>
     </div>
 
-
-    <!-- Main Content (Refactor) -->
-    <main class="container mx-auto px-4 py-8 relative content-layer pt-20">
+    <main class="container mx-auto px-4 content-layer pt-28 pb-10">
         <header class="text-center mb-12">
-            <!-- Profile (MODIFIKASI: Diubah dari <img> menjadi <video>) -->
             <div class="profile">
-                <!-- Ganti img dengan video, tambahkan object-position -->
-                <video src="https://files.catbox.moe/fn86on.mp4" alt="Profile Video" autoplay loop muted playsinline
-                       style="object-position: 50% 25%; will-change: transform;"></video>
+                <video src="https://files.catbox.moe/fn86on.mp4" autoplay loop muted playsinline></video>
             </div>
-            <!-- Judul (Tidak berubah, sudah bagus) -->
-            <div class="relative inline-block mb-6">
-                <h1 class="glitch-effect text-5xl md:text-7xl font-bold mb-4" data-text="FANNY P.ACE">FANNY P.ACE</h1>
-            </div>
-            <p class="text-lg md:text-xl neon-text-purple uppercase tracking-wider font-semibold font-orbitron">MLBB Creator & Web Developer</p>
-            <p class="max-w-2xl mx-auto mt-6 text-base md:text-lg text-gray-300 leading-relaxed font-rajdhani">
-            </p>
         </header>
 
-        <!-- Tampilan Waktu (Tidak berubah, sudah bagus) -->
-        <div class="flex justify-center mb-12">
-            <div class="time-container rounded-lg p-4 text-center">
-                <div id="time" class="text-3xl md:text-4xl font-bold font-orbitron">00:00:00</div>
-                <div id="date" class="text-base md:text-lg uppercase tracking-wider mt-1 font-rajdhani">Loading...</div>
-            </div>
-        </div>
-
-        <!-- Grid Portal (Layout Diberi Jarak Lebih) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 mb-12" id="portals-grid">
-            <!-- Kartu Portal akan di-render oleh JS di sini -->
+        <div id="portals-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         </div>
     </main>
 
-    <!-- Footer (Refactor) -->
-    <footer class="text-white text-center content-layer">
-        <p class="text-sm opacity-80 font-rajdhani">© 2025 Created by Fanny P.Ace | All Rights Reserved</p>
-        <p class="text-xs mt-2 font-orbitron">Powered by Uranus Support Technology</p>
+    <footer class="content-layer p-6 text-center border-t border-purple-900/50 bg-black/80 mt-auto">
+        <p class="text-gray-400 text-sm font-orbitron">© 2026 Created by Fanny P.Ace</p>
+        <p class="text-purple-500 text-xs mt-1 uppercase tracking-widest">Forged by Uranus Support Technology</p>
     </footer>
 
-    <!-- Modal Tambah Portal (Refactor) -->
-    <div id="add-portal-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden modal-overlay">
-        <div class="modal-content rounded-xl p-5 md:p-6 max-w-sm w-full mx-6 relative">
-            <button onclick="document.getElementById('add-portal-modal').classList.add('hidden')"
-                    class="absolute top-4 right-4 w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center text-xl neon-text-pink hover:scale-125 transition-all">×</button>
-            <h2 class="text-2xl neon-text-pink mb-3 uppercase tracking-wider font-orbitron font-bold">Create New Portal</h2>
-
-            <form id="portal-form" class="space-y-1">
-                <div>
-                    <label for="portal-name" class="block mb-1 neon-text-blue uppercase text-sm tracking-wider font-orbitron">Portal Name</label>
-                    <input type="text" id="portal-name" class="w-full p-3 rounded-lg text-white font-rajdhani text-base" placeholder="Portal Title" required>
-                </div>
-                <div>
-                    <label for="portal-url" class="block mb-1 neon-text-blue uppercase text-sm tracking-wider font-orbitron">Destination URL</label>
-                    <input type="url" id="portal-url" class="w-full p-3 rounded-lg text-white font-rajdhani text-base" placeholder="https://your-link.com" required>
-                </div>
-
-                <!-- Input Ikon diubah menjadi Select -->
-                <div>
-                    <label for="portal-icon" class="block mb-1 neon-text-blue uppercase text-sm tracking-wider font-orbitron">Pilih Ikon Portal</label>
-                    <select id="portal-icon" class="w-full p-3 rounded-lg text-white font-rajdhani text-base appearance-none">
-                        <option value="fas fa-globe">🌐 Globe (Default)</option>
-                        <option value="fas fa-link">🔗 Link</option>
-                        <option value="fas fa-home">🏠 Home</option>
-                        <option value="fas fa-gamepad">🎮 Game</option>
-                        <option value="fas fa-wallet">💰 Wallet</option>
-                        <option value="fas fa-shopping-cart">🛒 Store</option>
-                        <option value="fas fa-star">⭐ Favorite</option>
-                        <option value="fas fa-book">📚 Book</option>
-                        <option value="fas fa-video">🎬 Video</option>
-                        <option value="fas fa-music">🎵 Music</option>
-                        <option value="fas fa-image">🖼️ Image</option>
-                        <option value="fas fa-info-circle">ℹ️ Info</option>
-                        <option value="fab fa-whatsapp">💬 WhatsApp</option>
-                        <option value="fab fa-facebook">👍 Facebook</option>
-                        <option value."fab fa-instagram">📸 Instagram</option>
-                        <option value="fab fa-youtube">▶️ YouTube</option>
-                        <option value="fab fa-tiktok">🎵 TikTok</option>
-                        <option value="fab fa-discord">🗣️ Discord</option>
-                        <option value="fab fa-telegram">✈️ Telegram</option>
-                    </select>
-                </div>
+    <div id="add-portal-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden modal-overlay p-4">
+        <div class="modal-content w-full max-w-md rounded-2xl p-6 relative animate-[slideDown_0.3s_ease]">
+            <button onclick="document.getElementById('add-portal-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+            <h2 class="text-2xl font-orbitron text-cyan-400 mb-6 font-bold uppercase tracking-widest">New Portal</h2>
+            <form id="portal-form" class="space-y-4">
+                <input type="text" id="portal-name" placeholder="Portal Name" required>
+                <input type="url" id="portal-url" placeholder="https://link.com" required>
+                <input type="password" id="portal-password" placeholder="Password (Optional)">
+                <select id="portal-icon" class="cursor-pointer">
+                    <option value="fas fa-globe">🌐 Globe</option>
+                    <option value="fas fa-gamepad">🎮 Game</option>
+                    <option value="fas fa-shopping-cart">🛒 Store</option>
+                    <option value="fab fa-whatsapp">💬 WhatsApp</option>
+                    <option value="fab fa-youtube">▶️ YouTube</option>
+                    <option value="fab fa-instagram">📸 Instagram</option>
+                    <option value="fab fa-tiktok">🎵 TikTok</option>
+                    <option value="fas fa-lock">🔒 Secret</option>
+                </select>
+                <textarea id="portal-description" rows="2" placeholder="Short description..."></textarea>
                 
-                <div>
-                    <label for="portal-description" class="block mb-1 neon-text-blue uppercase text-sm tracking-wider font-orbitron">Description</label>
-                    <textarea id="portal-description" rows="2" class="w-full p-3 rounded-lg text-white font-rajdhani text-base" placeholder="Short description..."></textarea>
+                <div class="flex justify-between gap-2 text-sm">
+                    <label class="flex items-center space-x-2 cursor-pointer bg-black/30 p-2 rounded w-full justify-center border border-cyan-500/30 hover:bg-cyan-500/10 transition">
+                        <input type="radio" name="portal-color" value="#00d4ff" checked class="accent-cyan-400"> <span class="text-cyan-400 font-bold">Blue</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer bg-black/30 p-2 rounded w-full justify-center border border-purple-500/30 hover:bg-purple-500/10 transition">
+                        <input type="radio" name="portal-color" value="#9d4edd" class="accent-purple-400"> <span class="text-purple-400 font-bold">Purple</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer bg-black/30 p-2 rounded w-full justify-center border border-pink-500/30 hover:bg-pink-500/10 transition">
+                        <input type="radio" name="portal-color" value="#ff006e" class="accent-pink-500"> <span class="text-pink-500 font-bold">Pink</span>
+                    </label>
                 </div>
-                <div>
-                    <label class="block mb-1 neon-text-blue uppercase text-sm tracking-wider font-orbitron">Portal Theme</label>
-                    <div class="flex justify-around pt-1">
-                        <!-- Pilihan Radio Button (Styling Ditingkatkan) -->
-                        <label class="flex items-center space-x-2 cursor-pointer p-2 rounded-lg transition-all hover:bg-blue-500/10">
-                            <input type="radio" name="portal-color" value="#00d4ff" class="w-5 h-5" style="accent-color: var(--neon-blue);" checked>
-                            <span class="neon-text-blue font-bold font-orbitron">Blue</span>
-                        </label>
-                        <label class="flex items-center space-x-2 cursor-pointer p-2 rounded-lg transition-all hover:bg-pink-500/10">
-                            <input type="radio" name="portal-color" value="#ff2a9e" class="w-5 h-5" style="accent-color: var(--neon-pink);">
-                            <span class="neon-text-pink font-bold font-orbitron">Pink</span>
-                        </label>
-                        <label class="flex items-center space-x-2 cursor-pointer p-2 rounded-lg transition-all hover:bg-purple-500/10">
-                            <input type="radio" name="portal-color" value="#bf00ff" class="w-5 h-5" style="accent-color: var(--neon-purple);">
-                            <span class="neon-text-purple font-bold font-orbitron">Purple</span>
-                        </label>
-                    </div>
-                </div>
-                <!-- Tombol Aksi Modal (Refactor) -->
-                <div class="flex justify-end space-x-3 pt-1">
-                    <button type="button" onclick="document.getElementById('add-portal-modal').classList.add('hidden')"
-                            class="btn-secondary px-5 py-2 text-sm">
-                        Cancel
-                    </button>
-                    <button type="submit"
-                            class="btn-neon btn-neon-blue px-6 py-2 text-sm">
-                        Create
-                    </button>
+
+                <div class="flex justify-end gap-3 mt-6">
+                    <button type="button" onclick="document.getElementById('add-portal-modal').classList.add('hidden')" class="btn-secondary px-6 py-2">Cancel</button>
+                    <button type="submit" class="btn-neon px-6 py-2">Deploy</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Modal Konfirmasi (Refactor) -->
-    <div id="confirmation-modal" class="fixed inset-0 flex items-center justify-center z-[60] hidden modal-overlay">
-        <div class="modal-content rounded-xl p-8 max-w-sm w-full mx-4 relative text-center">
-            <h2 class="text-xl neon-text-pink mb-4 font-bold font-orbitron">Confirm Action</h2>
-            <p id="confirmation-message" class="mb-6 text-gray-300 font-rajdhani text-lg">Are you sure?</p>
-            <div class="flex justify-center space-x-4">
-                <button id="confirm-cancel-btn" class="btn-secondary px-6 py-2 text-sm">
-                    Cancel
-                </button>
-                <button id="confirm-ok-btn" class="btn-neon btn-neon-pink px-6 py-2 text-sm">
-                    Confirm
-                </button>
+    <div id="password-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden modal-overlay p-4">
+        <div class="modal-content w-full max-w-sm rounded-2xl p-8 text-center animate-[slideDown_0.3s_ease]">
+            <i class="fas fa-lock text-4xl text-pink-500 mb-4"></i>
+            <h2 class="text-xl font-orbitron text-white mb-2 tracking-widest">SECURE GATEWAY</h2>
+            <p class="text-gray-400 text-sm mb-6">Enter password to access this portal.</p>
+            <form onsubmit="event.preventDefault(); submitPassword();">
+                <input type="password" id="unlock-input" placeholder="Passcode" class="text-center mb-6 tracking-widest text-lg" required>
+                <div class="flex justify-center gap-3">
+                    <button type="button" onclick="closePasswordModal()" class="btn-secondary px-4 py-2">Cancel</button>
+                    <button type="submit" class="btn-neon px-6 py-2 border-pink-500 text-pink-500">Unlock</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="whatsapp-link-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden modal-overlay p-4">
+        <div class="modal-content w-full max-w-md rounded-2xl p-6 relative">
+            <button onclick="document.getElementById('whatsapp-link-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400"><i class="fas fa-times"></i></button>
+            <h2 class="text-xl font-orbitron text-green-400 mb-4 font-bold">WA LINK GENERATOR</h2>
+            <form id="wa-form" onsubmit="event.preventDefault(); generateWhatsAppLink();" class="space-y-4">
+                <div class="flex gap-2">
+                    <select id="wa-country-code" class="w-1/3 text-sm bg-[#1a0033] border-cyan-500 text-white rounded p-2"></select>
+                    <input type="tel" id="wa-number" placeholder="8123456789" class="w-2/3" required>
+                </div>
+                <textarea id="wa-message" rows="3" placeholder="Type your message here..."></textarea>
+                <button type="submit" class="btn-neon w-full py-2 border-green-500 text-green-400">Generate Link</button>
+            </form>
+            <div id="wa-result-container" class="hidden mt-4 pt-4 border-t border-gray-700">
+                <input type="text" id="wa-result-link" readonly class="mb-3 text-sm text-green-300 border-green-900 bg-black/50">
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="copyWaLink()" class="btn-secondary py-1 text-xs"><i class="fas fa-copy"></i> Copy</button>
+                    <button onclick="openWaLink()" class="btn-neon py-1 text-xs border-green-500 text-green-400"><i class="fab fa-whatsapp"></i> Open</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="smart-link-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden modal-overlay p-4">
+        <div class="modal-content w-full max-w-md rounded-2xl p-6 relative text-center">
+            <button onclick="document.getElementById('smart-link-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400"><i class="fas fa-times"></i></button>
+            <h2 class="text-2xl font-orbitron text-cyan-400 mb-2 font-bold tracking-widest">SMART LINK</h2>
+            
+            <div id="capacity-container" class="mb-6 bg-black/40 p-3 rounded-lg border border-gray-800">
+                <div class="flex justify-between text-xs text-cyan-400 mb-1 font-bold"><span>Kapasitas Data</span><span id="capacity-text">0%</span></div>
+                <div class="h-2 bg-gray-700 rounded-full overflow-hidden"><div id="capacity-bar" class="h-full bg-cyan-400 transition-all duration-500" style="width: 0%"></div></div>
+                <div id="capacity-detail" class="text-right text-[10px] text-gray-500 mt-1">Menghitung...</div>
+            </div>
+
+            <div class="space-y-3">
+                <div class="bg-black/20 p-4 rounded-xl border border-white/5">
+                    <button id="btn-show-link" onclick="revealLink()" class="btn-secondary w-full py-2 mb-2 text-sm"><i class="fas fa-link mr-2"></i>Show URL</button>
+                    <div id="link-content" class="hidden">
+                        <input type="text" id="generated-smart-link" readonly class="text-center text-xs mb-2 border-cyan-900 text-cyan-300 bg-black/50">
+                        <button onclick="copySmartLink()" class="btn-neon w-full py-2 text-sm"><i class="fas fa-copy"></i> Copy</button>
+                    </div>
+                </div>
+                
+                <div class="bg-black/20 p-4 rounded-xl border border-white/5">
+                    <button id="btn-show-qr" onclick="revealQR()" class="btn-secondary w-full py-2 mb-2 text-sm"><i class="fas fa-qrcode mr-2"></i>Show QR Code</button>
+                    <div id="qr-content" class="hidden flex flex-col items-center">
+                        <div class="bg-white p-2 rounded-xl mb-3">
+                            <canvas id="qr-canvas-display"></canvas>
+                        </div>
+                        <button onclick="downloadHighResQR()" class="btn-neon py-2 px-6 text-sm border-white text-white">Download 4K</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="confirmation-modal" class="fixed inset-0 flex items-center justify-center z-[60] hidden modal-overlay p-4">
+        <div class="modal-content w-full max-w-sm rounded-2xl p-6 text-center border-red-900/50">
+            <h2 class="text-xl font-orbitron text-white mb-4 tracking-widest">SYSTEM CONFIRMATION</h2>
+            <p id="confirmation-message" class="text-gray-300 mb-6 font-rajdhani">Are you sure you want to proceed?</p>
+            <div class="flex justify-center gap-4">
+                <button id="confirm-cancel-btn" class="btn-secondary px-6 py-2">Abort</button>
+                <button id="confirm-ok-btn" class="btn-neon px-6 py-2 border-red-500 text-red-500">Confirm</button>
             </div>
         </div>
     </div>
 
     <input type="file" id="import-file-input" class="hidden" accept=".zip,.txt,application/json">
 
-    <!-- FUNGSI JAVASCRIPT DARI KODE 1 (TIDAK BERUBAH) -->
     <script>
-        const _0x2e5f09=_0x25d8;(function(_0x522bcb,_0x91d088){const _0x1e68ab=_0x25d8,_0x20db63=_0x522bcb();while(!![]){try{const _0x4bc46a=parseInt(_0x1e68ab(0x28a))/0x1*(parseInt(_0x1e68ab(0x241))/0x2)+-parseInt(_0x1e68ab(0x263))/0x3+-parseInt(_0x1e68ab(0x22a))/0x4+parseInt(_0x1e68ab(0x252))/0x5+parseInt(_0x1e68ab(0x203))/0x6*(parseInt(_0x1e68ab(0x221))/0x7)+parseInt(_0x1e68ab(0x260))/0x8*(parseInt(_0x1e68ab(0x1f8))/0x9)+-parseInt(_0x1e68ab(0x22b))/0xa;if(_0x4bc46a===_0x91d088)break;else _0x20db63['push'](_0x20db63['shift']());}catch(_0x2f7b55){_0x20db63['push'](_0x20db63['shift']());}}}(_0xf52c,0x31c63));const _0x30b4c7=(function(){let _0x4d3796=!![];return function(_0x5bdf59,_0xc410b4){const _0x36f15f=_0x4d3796?function(){const _0x57a3f4=_0x25d8;if(_0xc410b4){const _0x124cff=_0xc410b4[_0x57a3f4(0x240)](_0x5bdf59,arguments);return _0xc410b4=null,_0x124cff;}}:function(){};return _0x4d3796=![],_0x36f15f;};}()),_0x636670=_0x30b4c7(this,function(){const _0x2d4e0e=_0x25d8;return _0x636670['toString']()[_0x2d4e0e(0x259)](_0x2d4e0e(0x24b))[_0x2d4e0e(0x1ef)]()[_0x2d4e0e(0x21e)](_0x636670)[_0x2d4e0e(0x259)](_0x2d4e0e(0x24b));});function _0xf52c(){const _0x23242f=['textContent','application/zip','info','Error\x20parsing\x20backup\x20file:','click','return\x20(function()\x20','mobile-menu','url','DOMContentLoaded','portals','ended','{}.constructor(\x22return\x20this\x22)(\x20)','portal-name','appendChild','))\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20class=\x22delete-btn\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-times\x20text-sm\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</a>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20',';\x20text-shadow:\x200\x200\x2010px\x20','#bf00ff','showConfirmationModal','toLocaleTimeString','apply','2XWPXly','en-GB','Video\x20background\x20gagal\x20diputar:','bind','color:\x20','portal-form','icon','length','time','Error\x20reading\x20ZIP\x20file:','(((.+)+)+)+$','files',';\x20border-color:\x20','showAddLinkModal','bg-video','getElementById','portal-description','358520ptOxXA','bg-image','\x20icon\x22\x20onerror=\x22this.style.display=\x27none\x27;\x20this.nextSibling.style.display=\x27block\x27;\x22>','<img\x20src=\x22','file','name','.zip','search','confirm-cancel-btn','readAsArrayBuffer','forEach','Gagal\x20membaca\x20file\x20backup.\x20File\x20mungkin\x20rusak\x20atau\x20formatnya\x20salah.','Tipe\x20file\x20tidak\x20didukung.\x20Silakan\x20unggah\x20file\x20backup\x20.zip\x20atau\x20.txt.','type','2896DBjCsY','createElement','div','146850nRQcCx','Buy\x20Fanny\x20P.Ace\x20Code','parse','fas\x20fa-gem','Gagal\x20membuat\x20file\x20backup\x20ZIP.','warn','error','contains','uranusfazry_backup.json','submit','light-mode','href','async','input[name=\x22portal-color\x22]:checked','overflow-hidden','getItem','log','#00f0ff','Error\x20creating\x20ZIP\x20file:','date','closeMobileMenu','id-ID','deletePortalAction','add','className','https://api.whatsapp.com/send/?phone=6287872521809&text=Halo%2C+saya+ingin+membeli+Kode+Website+MLBB+Fanny+Skin+P.Ace+sebesar+Rp100.000.+Mohon+transfer+ke+DANA+087734421123+dan+kirimkan+bukti+pembayarannya.+Pesanan+akan+diproses+maksimal+1x24+jam.+Terima+kasih.&type=phone_number&app_absent=0','remove','stringify','Upgrade\x20sekarang\x20—\x20akses\x20semua\x20website\x20uranus\x20tanpa\x20iklan\x20cuma\x20Rp25K','Autoplay\x20video\x20background\x20diblokir/gagal:','Data\x20berhasil\x20diimpor.\x20Halaman\x20akan\x20dimuat\x20ulang.','reload','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<a\x20href=\x22','Gagal\x20membaca\x20file\x20ZIP.\x20File\x20mungkin\x20rusak.','&nbsp;','style','uranusfazry_backup.zip','reset','removeItem','377129tmLvgz','function','data:image','portal-icon','toString','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20class=\x22font-bold\x20uppercase\x20tracking-wider\x20break-words\x20text-lg\x20mb-2\x20font-orbitron\x22\x20style=\x22','mobile-menu-button','console','hidden','setItem','long','play','\x22></i>','1062hnQBsB','<i\x20class=\x22','add-portal-modal','change','backupData','toggle','.txt','mobile-menu-overlay','prototype','\x22\x20target=\x22_blank\x22\x20class=\x22block\x20h-full\x20p-6\x20text-center\x20flex\x20flex-col\x20justify-start\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<!--\x20Konten\x20Kartu\x20-->\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22relative\x20z-10\x20flex-grow\x20flex\x20flex-col\x20items-center\x20justify-center\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','generateAsync','307266gsgYJA','querySelector','string','text/plain','Beli\x20kode\x20website\x20MLBB\x20Fanny\x20P.Ace\x20edisi\x20premium\x20seharga\x20Rp100K','</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20class=\x22text-sm\x20text-gray-300\x20mt-2\x20leading-normal\x20font-rajdhani\x22>','application/json','target','0.35','https://api.whatsapp.com/send/?phone=6287872521809&text=Halo%2C+saya+ingin+membeli+Akses+Website+Premium+Tanpa+Iklan+sebesar+Rp25.000.+Mohon+transfer+ke+DANA+087734421123+dan+kirimkan+bukti+pembayarannya.+Pesanan+akan+diproses+maksimal+1x24+jam.+Terima+kasih.&type=phone_number&app_absent=0','table','import-file-input','trace','open','opacity','addEventListener','result','classList','splice','description','toLocaleDateString','http','DEFLATE','numeric','readAsText','#00d4ff','portal-url','constructor','value','fas\x20fa-globe','7HKyhWQ','logo-container','Format\x20file\x20backup\x20tidak\x20valid.','body','startsWith','?\x27,\x20()\x20=>\x20deletePortalAction(','endsWith','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22portal-card\x20h-full\x22\x20style=\x22','onload','948932biedjs','527020gZMown','loadAsync'];_0xf52c=function(){return _0x23242f;};return _0xf52c();}_0x636670();const _0x26e87e=(function(){let _0x3b08ac=!![];return function(_0x3e6df1,_0x5adb56){const _0x4bc4f6=_0x3b08ac?function(){const _0x307756=_0x25d8;if(_0x5adb56){const _0x4f1bef=_0x5adb56[_0x307756(0x240)](_0x3e6df1,arguments);return _0x5adb56=null,_0x4f1bef;}}:function(){};return _0x3b08ac=![],_0x4bc4f6;};}()),_0x31fbea=_0x26e87e(this,function(){const _0x5146f8=_0x25d8,_0x5072b6=function(){const _0x48e0b0=_0x25d8;let _0x3b6bca;try{_0x3b6bca=Function(_0x48e0b0(0x232)+_0x48e0b0(0x238)+');')();}catch(_0x465789){_0x3b6bca=window;}return _0x3b6bca;},_0x14f3b0=_0x5072b6(),_0x160655=_0x14f3b0[_0x5146f8(0x1f2)]=_0x14f3b0[_0x5146f8(0x1f2)]||{},_0xf0cb5f=[_0x5146f8(0x273),_0x5146f8(0x268),_0x5146f8(0x22f),_0x5146f8(0x269),'exception',_0x5146f8(0x20d),_0x5146f8(0x20f)];for(let _0x12afad=0x0;_0x12afad<_0xf0cb5f[_0x5146f8(0x248)];_0x12afad++){const _0x4ae83a=_0x26e87e[_0x5146f8(0x21e)][_0x5146f8(0x200)][_0x5146f8(0x244)](_0x26e87e),_0x750798=_0xf0cb5f[_0x12afad],_0x6ae0a6=_0x160655[_0x750798]||_0x4ae83a;_0x4ae83a['__proto__']=_0x26e87e[_0x5146f8(0x244)](_0x26e87e),_0x4ae83a['toString']=_0x6ae0a6[_0x5146f8(0x1ef)][_0x5146f8(0x244)](_0x6ae0a6),_0x160655[_0x750798]=_0x4ae83a;}});function _0x25d8(_0x11b4da,_0x110c69){const _0x323719=_0xf52c();return _0x25d8=function(_0x31fbea,_0x26e87e){_0x31fbea=_0x31fbea-0x1ef;let _0x438c0f=_0x323719[_0x31fbea];return _0x438c0f;},_0x25d8(_0x11b4da,_0x110c69);}_0x31fbea(),document[_0x2e5f09(0x212)](_0x2e5f09(0x235),function(){const _0x5f5bad=_0x2e5f09;let _0x226977=![];const _0x58d4be=document[_0x5f5bad(0x250)](_0x5f5bad(0x24f)),_0x344463=document[_0x5f5bad(0x250)](_0x5f5bad(0x253));if(_0x58d4be&&_0x344463){const _0x30d6f6=()=>{const _0x223030=_0x5f5bad;_0x58d4be[_0x223030(0x286)][_0x223030(0x211)]='0',!document[_0x223030(0x224)][_0x223030(0x214)][_0x223030(0x26a)](_0x223030(0x26d))&&(_0x344463['style'][_0x223030(0x211)]='0.35'),_0x226977=!![];},_0x5d7561=_0x5d7b74=>{const _0x4826a3=_0x5f5bad;console[_0x4826a3(0x269)](_0x4826a3(0x243),_0x5d7b74),_0x30d6f6();};_0x58d4be[_0x5f5bad(0x212)](_0x5f5bad(0x237),_0x30d6f6),_0x58d4be[_0x5f5bad(0x212)](_0x5f5bad(0x269),_0x5d7561);const _0x20c52a=_0x58d4be[_0x5f5bad(0x1f6)]();_0x20c52a!==undefined&&_0x20c52a['catch'](_0x55d8ce=>{const _0x316fb1=_0x5f5bad;console['warn'](_0x316fb1(0x280),_0x55d8ce),_0x30d6f6();});}const _0x77fc5e=document['getElementById'](_0x5f5bad(0x222)),_0x420197=document[_0x5f5bad(0x250)]('portals-grid'),_0xb839a6=document[_0x5f5bad(0x250)](_0x5f5bad(0x246)),_0x13f1c5=document[_0x5f5bad(0x250)](_0x5f5bad(0x1f1)),_0x26852e=document['getElementById'](_0x5f5bad(0x233)),_0x2aea0b=document[_0x5f5bad(0x250)](_0x5f5bad(0x1ff)),_0x4a7429=document[_0x5f5bad(0x250)](_0x5f5bad(0x249)),_0x10e5a8=document[_0x5f5bad(0x250)](_0x5f5bad(0x276)),_0x120d96=document[_0x5f5bad(0x250)](_0x5f5bad(0x20e)),_0x8d4872=document[_0x5f5bad(0x250)]('confirmation-modal'),_0x2bcffa=document[_0x5f5bad(0x250)]('confirmation-message'),_0x18f849=document['getElementById']('confirm-ok-btn'),_0x13313a=document[_0x5f5bad(0x250)](_0x5f5bad(0x25a));let _0x50b0cc=[],_0x446ec3=null;const _0x5dcdac=[{'name':'Fanny\x20Premium\x20Access','url':_0x5f5bad(0x20c),'icon':_0x5f5bad(0x266),'color':_0x5f5bad(0x23d),'description':_0x5f5bad(0x27f)},{'name':_0x5f5bad(0x264),'url':_0x5f5bad(0x27c),'icon':'fas\x20fa-shopping-cart','color':_0x5f5bad(0x274),'description':_0x5f5bad(0x207)}];function _0x16a956(){const _0x553641=_0x5f5bad;_0x50b0cc=JSON['parse'](localStorage[_0x553641(0x272)](_0x553641(0x236)))||_0x5dcdac,_0x2fc078(),_0x2d185a(),setInterval(_0x2d185a,0x3e8),_0x77fc5e[_0x553641(0x212)](_0x553641(0x231),()=>{const _0x56c00c=_0x553641;if(!_0x226977){console[_0x56c00c(0x273)]('Mode\x20terang\x20dikunci\x20hingga\x20video\x20selesai.');return;}document[_0x56c00c(0x224)][_0x56c00c(0x214)][_0x56c00c(0x1fd)](_0x56c00c(0x26d)),!document[_0x56c00c(0x224)][_0x56c00c(0x214)][_0x56c00c(0x26a)](_0x56c00c(0x26d))&&_0x58d4be[_0x56c00c(0x286)]['opacity']==='0'&&(_0x344463[_0x56c00c(0x286)][_0x56c00c(0x211)]=_0x56c00c(0x20b));}),_0x13f1c5[_0x553641(0x212)](_0x553641(0x231),()=>{const _0x102654=_0x553641;_0x26852e[_0x102654(0x214)]['add'](_0x102654(0x210)),_0x2aea0b[_0x102654(0x214)][_0x102654(0x27d)](_0x102654(0x1f3)),document[_0x102654(0x224)][_0x102654(0x214)]['add'](_0x102654(0x271));}),_0x2aea0b[_0x553641(0x212)]('click',closeMobileMenu),_0xb839a6[_0x553641(0x212)](_0x553641(0x26c),_0xe52769),_0x120d96[_0x553641(0x212)](_0x553641(0x1fb),_0x4e8ddd),_0x13313a[_0x553641(0x212)](_0x553641(0x231),()=>_0x8d4872[_0x553641(0x214)][_0x553641(0x27a)](_0x553641(0x1f3))),_0x18f849[_0x553641(0x212)]('click',()=>{const _0x372a7d=_0x553641;typeof _0x446ec3===_0x372a7d(0x28b)&&_0x446ec3(),_0x8d4872[_0x372a7d(0x214)]['add'](_0x372a7d(0x1f3)),_0x446ec3=null;});}window[_0x5f5bad(0x277)]=function(){const _0x3e4b63=_0x5f5bad;_0x26852e[_0x3e4b63(0x214)]['remove'](_0x3e4b63(0x210)),_0x2aea0b[_0x3e4b63(0x214)][_0x3e4b63(0x27a)]('hidden'),document['body'][_0x3e4b63(0x214)][_0x3e4b63(0x27d)](_0x3e4b63(0x271));},window[_0x5f5bad(0x23e)]=function(_0x51c958,_0x5693b2){const _0x22be18=_0x5f5bad;_0x2bcffa[_0x22be18(0x22d)]=_0x51c958,_0x446ec3=_0x5693b2,_0x8d4872[_0x22be18(0x214)]['remove']('hidden');};function _0x2fc078(){const _0x4d0aca=_0x5f5bad;_0x420197['innerHTML']='',_0x50b0cc[_0x4d0aca(0x25c)]((_0xf4b55a,_0x1b1f96)=>{const _0x16c4e1=_0x4d0aca,_0x4bbc24=document[_0x16c4e1(0x261)](_0x16c4e1(0x262));_0x4bbc24[_0x16c4e1(0x27b)]='h-full';const _0x1f7f5c=_0xf4b55a['color']||_0x16c4e1(0x21c),_0x854485=_0x16c4e1(0x245)+_0x1f7f5c+_0x16c4e1(0x24d)+_0x1f7f5c+';',_0x2d9ddd=_0x16c4e1(0x245)+_0x1f7f5c+_0x16c4e1(0x23c)+_0x1f7f5c+';';let _0x3f1e91=_0xf4b55a[_0x16c4e1(0x247)]||'fas\x20fa-globe';(!_0xf4b55a[_0x16c4e1(0x247)]||!_0xf4b55a[_0x16c4e1(0x247)][_0x16c4e1(0x225)]('fa')&&!_0xf4b55a['icon'][_0x16c4e1(0x225)](_0x16c4e1(0x218))&&!_0xf4b55a[_0x16c4e1(0x247)][_0x16c4e1(0x225)](_0x16c4e1(0x28c)))&&(_0x3f1e91=_0x16c4e1(0x220));const _0x55073d=_0x3f1e91['startsWith'](_0x16c4e1(0x28c))||_0x3f1e91['startsWith'](_0x16c4e1(0x218))?_0x16c4e1(0x255)+_0x3f1e91+'\x22\x20class=\x22mx-auto\x22\x20alt=\x22'+_0xf4b55a['name']+_0x16c4e1(0x254)+('<i\x20class=\x22fas\x20fa-globe\x20hidden\x22\x20style=\x22'+_0x2d9ddd+_0x16c4e1(0x1f7)):_0x16c4e1(0x1f9)+_0x3f1e91+'\x22\x20style=\x22'+_0x2d9ddd+_0x16c4e1(0x1f7),_0x1ccaa6=_0xf4b55a[_0x16c4e1(0x216)]?_0xf4b55a['description']:_0x16c4e1(0x285);_0x4bbc24['innerHTML']=_0x16c4e1(0x228)+_0x854485+_0x16c4e1(0x283)+_0xf4b55a[_0x16c4e1(0x234)]+_0x16c4e1(0x201)+_0x55073d+_0x16c4e1(0x1f0)+_0x2d9ddd+'\x22>'+_0xf4b55a[_0x16c4e1(0x257)]+_0x16c4e1(0x208)+_0x1ccaa6+'</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<!--\x20Tombol\x20Hapus\x20(Styling\x20Baru)\x20-->\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22event.preventDefault();\x20event.stopPropagation();\x20showConfirmationModal(\x27Yakin\x20ingin\x20menghapus\x20portal\x20'+_0xf4b55a['name']+_0x16c4e1(0x226)+_0x1b1f96+_0x16c4e1(0x23b),_0x420197[_0x16c4e1(0x23a)](_0x4bbc24);});}function _0xe52769(_0x40e8f4){const _0x1f2a9c=_0x5f5bad;_0x40e8f4['preventDefault']();const _0x346881=document['getElementById'](_0x1f2a9c(0x239))['value'],_0x575734=document[_0x1f2a9c(0x250)](_0x1f2a9c(0x21d))[_0x1f2a9c(0x21f)]||'#',_0x54cec0=document[_0x1f2a9c(0x250)](_0x1f2a9c(0x251))[_0x1f2a9c(0x21f)]||'',_0x478cbb=document[_0x1f2a9c(0x250)](_0x1f2a9c(0x28d))[_0x1f2a9c(0x21f)],_0x273ec2=document[_0x1f2a9c(0x204)](_0x1f2a9c(0x270))[_0x1f2a9c(0x21f)];_0x271afa(_0x346881,_0x575734,_0x478cbb,_0x273ec2,_0x54cec0);}function _0x271afa(_0xca3912,_0x298a56,_0x173157,_0xcd81f7,_0x27d7f7){const _0x538863=_0x5f5bad;_0x50b0cc['push']({'name':_0xca3912,'url':_0x298a56,'icon':_0x173157,'color':_0xcd81f7,'description':_0x27d7f7}),_0x39344b(),_0x2fc078(),document[_0x538863(0x250)]('add-portal-modal')[_0x538863(0x214)][_0x538863(0x27a)](_0x538863(0x1f3)),_0x1adb08();}window[_0x5f5bad(0x279)]=function(_0x4ae29a){const _0x2e6aba=_0x5f5bad;_0x50b0cc[_0x2e6aba(0x215)](_0x4ae29a,0x1),_0x39344b(),_0x2fc078();};function _0x1adb08(){const _0x4ffb88=_0x5f5bad;_0xb839a6[_0x4ffb88(0x288)]();}function _0x39344b(){const _0x3fc81e=_0x5f5bad;localStorage[_0x3fc81e(0x1f4)](_0x3fc81e(0x236),JSON[_0x3fc81e(0x27e)](_0x50b0cc));}window[_0x5f5bad(0x24e)]=function(){const _0x2fec1e=_0x5f5bad;document[_0x2fec1e(0x250)](_0x2fec1e(0x1fa))['classList']['remove'](_0x2fec1e(0x1f3)),_0x1adb08(),_0x26852e[_0x2fec1e(0x214)][_0x2fec1e(0x26a)]('open')&&closeMobileMenu();};function _0x2d185a(){const _0x28c61d=_0x5f5bad,_0x32c03b=new Date();_0x4a7429[_0x28c61d(0x22d)]=_0x32c03b[_0x28c61d(0x23f)](_0x28c61d(0x242)),_0x10e5a8[_0x28c61d(0x22d)]=_0x32c03b[_0x28c61d(0x217)](_0x28c61d(0x278),{'weekday':'long','year':_0x28c61d(0x21a),'month':_0x28c61d(0x1f5),'day':_0x28c61d(0x21a)});}window['resetAllSettings']=function(){const _0x1ef398=_0x5f5bad;localStorage[_0x1ef398(0x289)](_0x1ef398(0x236)),location[_0x1ef398(0x282)]();},window[_0x5f5bad(0x1fc)]=async()=>{const _0x119eca=_0x5f5bad,_0x19a5c2={'portals':JSON[_0x119eca(0x265)](localStorage['getItem']('portals'))||_0x5dcdac},_0x3f6265=JSON[_0x119eca(0x27e)](_0x19a5c2,null,0x2);try{const _0xa03a5c=new JSZip();_0xa03a5c[_0x119eca(0x256)](_0x119eca(0x26b),_0x3f6265);const _0x1c2e8f=await _0xa03a5c[_0x119eca(0x202)]({'type':'blob','compression':_0x119eca(0x219)}),_0x5a6620=URL['createObjectURL'](_0x1c2e8f),_0x4f6186=document[_0x119eca(0x261)]('a');_0x4f6186[_0x119eca(0x26e)]=_0x5a6620,_0x4f6186['download']=_0x119eca(0x287),document[_0x119eca(0x224)][_0x119eca(0x23a)](_0x4f6186),_0x4f6186[_0x119eca(0x231)](),document['body']['removeChild'](_0x4f6186),URL['revokeObjectURL'](_0x5a6620);}catch(_0x549cef){console[_0x119eca(0x269)](_0x119eca(0x275),_0x549cef),alert(_0x119eca(0x267));}},window['importData']=()=>{const _0x59313c=_0x5f5bad;_0x120d96[_0x59313c(0x231)]();};async function _0x4e8ddd(_0x44e5b0){const _0xfa3a67=_0x5f5bad,_0x3e6282=_0x44e5b0['target'][_0xfa3a67(0x24c)][0x0];if(!_0x3e6282)return;if(_0x3e6282[_0xfa3a67(0x25f)]===_0xfa3a67(0x22e)||_0x3e6282[_0xfa3a67(0x257)][_0xfa3a67(0x227)](_0xfa3a67(0x258))){const _0x2436d4=new FileReader();_0x2436d4[_0xfa3a67(0x229)]=async _0x396a52=>{const _0x1a4709=_0xfa3a67;try{const _0x33e267=await JSZip[_0x1a4709(0x22c)](_0x396a52[_0x1a4709(0x20a)][_0x1a4709(0x213)]),_0x1e4edc=_0x33e267[_0x1a4709(0x256)](_0x1a4709(0x26b));if(_0x1e4edc){const _0x41a8ec=await _0x1e4edc[_0x1a4709(0x26f)](_0x1a4709(0x205));await _0x400bb5(_0x41a8ec);}else alert('File\x20ZIP\x20tidak\x20valid:\x20\x22uranusfazry_backup.json\x22\x20tidak\x20ditemukan.');}catch(_0x1ebe28){console['error'](_0x1a4709(0x24a),_0x1ebe28),alert(_0x1a4709(0x284));}},_0x2436d4[_0xfa3a67(0x25b)](_0x3e6282);}else{if(_0x3e6282[_0xfa3a67(0x25f)]===_0xfa3a67(0x206)||_0x3e6282['type']===_0xfa3a67(0x209)||_0x3e6282[_0xfa3a67(0x257)][_0xfa3a67(0x227)](_0xfa3a67(0x1fe))){const _0x43811e=new FileReader();_0x43811e[_0xfa3a67(0x229)]=async _0x54d9fd=>{const _0xd84376=_0xfa3a67;await _0x400bb5(_0x54d9fd[_0xd84376(0x20a)][_0xd84376(0x213)]);},_0x43811e[_0xfa3a67(0x21b)](_0x3e6282);}else alert(_0xfa3a67(0x25e));}_0x44e5b0[_0xfa3a67(0x20a)][_0xfa3a67(0x21f)]='';}async function _0x400bb5(_0x2d0cad){const _0x47dca1=_0x5f5bad;try{const _0x573fbe=JSON[_0x47dca1(0x265)](_0x2d0cad);_0x573fbe&&Array['isArray'](_0x573fbe[_0x47dca1(0x236)])?(localStorage[_0x47dca1(0x1f4)](_0x47dca1(0x236),JSON[_0x47dca1(0x27e)](_0x573fbe[_0x47dca1(0x236)])),showConfirmationModal(_0x47dca1(0x281),()=>{const _0x30dfac=_0x47dca1;location[_0x30dfac(0x282)]();})):alert(_0x47dca1(0x223));}catch(_0x685c94){console['error'](_0x47dca1(0x230),_0x685c94),alert(_0x47dca1(0x25d));}}_0x16a956();});
-    </script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const MAX_QR_LENGTH = 2900; 
 
+            let isVideoFinished = false;
+            const bgVideo = document.getElementById('bg-video');
+            const bgImage = document.getElementById('bg-image');
+
+            if (bgVideo && bgImage) {
+                const handleVideoEnd = () => {
+                    bgVideo.style.opacity = '0';
+                    if (!document.body.classList.contains('light-mode')) {
+                        bgImage.style.opacity = '0.35';
+                    }
+                    isVideoFinished = true;
+                };
+                bgVideo.addEventListener('ended', handleVideoEnd);
+                bgVideo.addEventListener('error', handleVideoEnd);
+                bgVideo.play().catch(() => handleVideoEnd());
+            }
+
+            let portals = [];
+            let onConfirmCallback = null;
+            let currentUnlockIndex = -1;
+            
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const portalsGrid = document.getElementById('portals-grid');
+            const portalForm = document.getElementById('portal-form');
+            const notifContainer = document.getElementById('notif-container');
+
+            window.showNotification = function(title, message, type = 'success') {
+                const toast = document.createElement('div');
+                toast.className = `notif-toast ${type}`;
+                const iconClass = type === 'success' ? 'fa-check' : 'fa-exclamation-triangle';
+                const colorClass = type === 'success' ? 'text-green-400' : 'text-red-500';
+                
+                toast.innerHTML = `
+                    <div class="text-xl ${colorClass}"><i class="fas ${iconClass}"></i></div>
+                    <div class="flex-grow">
+                        <h4 class="font-bold text-sm uppercase tracking-wider ${colorClass}">${title}</h4>
+                        <p class="text-xs text-gray-300 mt-1">${message}</p>
+                    </div>
+                `;
+                notifContainer.appendChild(toast);
+                requestAnimationFrame(() => toast.classList.add('show'));
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => toast.remove(), 400);
+                }, 4000);
+            };
+
+            const SEP_ITEM = '\x01'; const SEP_FIELD = '\x02';
+            const UrlManager = {
+                serialize(portals) { return portals.map(p => [p.name, p.url, p.icon, p.color, p.description||"", p.password||""].join(SEP_FIELD)).join(SEP_ITEM); },
+                deserialize(str) { if(!str) return []; return str.split(SEP_ITEM).map(s => { const p=s.split(SEP_FIELD); return {name:p[0], url:p[1], icon:p[2], color:p[3], description:p[4]||"", password:p[5]||null}; }); },
+                encode(portals) { try { return LZString.compressToBase64(UrlManager.serialize(portals)).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""); } catch(e){ return null; } },
+                decode(encoded) { try { let b64=encoded.replace(/-/g,"+").replace(/_/g,"/"); while(b64.length%4!==0) b64+="="; return UrlManager.deserialize(LZString.decompressFromBase64(b64)); } catch(e){ return null; } },
+                load(payload) { if(payload.startsWith("v5_")) return UrlManager.decode(payload.slice(3)); return null; }
+            };
+
+            const defaultPortals = [
+                {
+                    name: 'Fanny Premium Access',
+                    url: 'https://api.whatsapp.com/send/?phone=6287872521809&text=Halo%2C+saya+ingin+membeli+Akses+Website+Premium+Fanny+tanpa+iklan+sebesar+Rp25.000.+Mohon+transfer+ke+DANA+087734421123+dan+kirimkan+bukti+pembayarannya.+Pesanan+akan+diproses+maksimal+1x24+jam.+Terima+kasih.&type=phone_number&app_absent=0',
+                    icon: 'fas fa-gem',
+                    color: '#ce00a7',
+                    description: 'Upgrade sekarang — akses semua website uranus tanpa iklan cuma Rp25K'
+                },
+                {
+                    name: 'Buy Fanny P.Ace Skin',
+                    url: 'https://api.whatsapp.com/send/?phone=6287872521809&text=Halo%2C+saya+ingin+membeli+Kode+Website+MLBB+Fanny+Skin+P.Ace+sebesar+Rp100.000.+Mohon+transfer+ke+DANA+087734421123+dan+kirimkan+bukti+pembayarannya.+Pesanan+akan+diproses+maksimal+1x24+jam.+Terima+kasih.&type=phone_number&app_absent=0',
+                    icon: 'fas fa-bolt',
+                    color: '#9d4edd',
+                    description: 'Beli kode website MLBB Fanny P.Ace edisi premium seharga Rp100K'
+                },
+                {
+                    name: 'Uranus Store',
+                    url: 'https://trakteer.id/uranusfazry/shop',
+                    icon: 'fas fa-shopping-bag',
+                    color: '#00d4ff',
+                    description: 'Kunjungi store resmi kami untuk promo terbaru'
+                }
+            ];
+
+            function initApp() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const encodedData = urlParams.get('p');
+                if (encodedData) {
+                    const decoded = UrlManager.load(encodedData);
+                    if (decoded) {
+                        portals = decoded;
+                        localStorage.setItem('portals', JSON.stringify(portals));
+                        window.history.replaceState({}, document.title, window.location.pathname);
+                        showNotification('SYSTEM', 'Data loaded from external link.', 'success');
+                    } else loadStorage();
+                } else loadStorage();
+                
+                populateCountries();
+                renderPortals();
+                setupEvents();
+            }
+
+            function loadStorage() { portals = JSON.parse(localStorage.getItem('portals')) || defaultPortals; }
+
+            function renderPortals() {
+                portalsGrid.innerHTML = '';
+                portals.forEach((p, i) => {
+                    const el = document.createElement('div');
+                    el.className = 'h-full';
+                    const isLocked = p.password && p.password.trim() !== "";
+                    const color = p.color || '#00d4ff';
+                    const lockHtml = isLocked ? `<div class="lock-indicator"><i class="fas fa-lock"></i></div>` : '';
+                    
+                    let iconHtml = `<i class="${p.icon} text-5xl mb-4 transition-transform duration-500" style="color: ${color}; text-shadow: 0 0 5px ${color};"></i>`;
+                    if(p.icon.startsWith('http') || p.icon.startsWith('data:')) {
+                        iconHtml = `<img src="${p.icon}" class="h-16 w-16 mb-4 object-contain mx-auto" style="filter: drop-shadow(0 0 2px ${color})">`;
+                    }
+
+                    el.innerHTML = `
+                        <div class="portal-card group cursor-pointer" onclick="handlePortalClick(event, ${i})" style="color: ${color}; border-color: ${color}40;">
+                            ${lockHtml}
+                            <div class="relative z-10 flex flex-col items-center justify-center text-center h-full">
+                                ${iconHtml}
+                                <h3 class="font-bold uppercase tracking-wider text-lg mb-2 font-orbitron line-clamp-1" style="color: ${color};">${p.name}</h3>
+                                <p class="text-sm text-gray-300 mt-2 leading-relaxed font-rajdhani line-clamp-2">${p.description || 'No description provided.'}</p>
+                            </div>
+                            <button onclick="event.stopPropagation(); showConfirmationModal('Delete ${p.name}?', () => deletePortal(${i}))" class="delete-btn">
+                                <i class="fas fa-times text-sm"></i>
+                            </button>
+                        </div>`;
+                    portalsGrid.appendChild(el);
+                });
+            }
+
+            function setupEvents() {
+                document.getElementById('mobile-menu-button').onclick = () => {
+                    mobileMenu.classList.remove('translate-x-full');
+                    mobileMenuOverlay.classList.remove('hidden');
+                };
+                window.closeMobileMenu = () => {
+                    mobileMenu.classList.add('translate-x-full');
+                    mobileMenuOverlay.classList.add('hidden');
+                };
+
+                document.getElementById('logo-container').onclick = () => {
+                    if(!isVideoFinished) return;
+                    document.body.classList.toggle('light-mode');
+                    if(!document.body.classList.contains('light-mode') && bgVideo.style.opacity === '0') bgImage.style.opacity = '0.35';
+                    showNotification('THEME', 'Visual mode switched.', 'success');
+                };
+
+                portalForm.onsubmit = (e) => {
+                    e.preventDefault();
+                    const name = document.getElementById('portal-name').value;
+                    const url = document.getElementById('portal-url').value;
+                    const icon = document.getElementById('portal-icon').value;
+                    const color = document.querySelector('input[name="portal-color"]:checked').value;
+                    const desc = document.getElementById('portal-description').value;
+                    const pass = document.getElementById('portal-password').value;
+                    
+                    portals.push({ name, url, icon, color, description: desc, password: pass ? btoa(pass) : "" });
+                    saveData();
+                    renderPortals();
+                    document.getElementById('add-portal-modal').classList.add('hidden');
+                    portalForm.reset();
+                    showNotification('SUCCESS', 'New portal deployed.', 'success');
+                };
+
+                document.getElementById('confirm-cancel-btn').onclick = () => document.getElementById('confirmation-modal').classList.add('hidden');
+                document.getElementById('confirm-ok-btn').onclick = () => { if(onConfirmCallback) onConfirmCallback(); document.getElementById('confirmation-modal').classList.add('hidden'); };
+
+                document.getElementById('import-file-input').onchange = async (e) => {
+                    const file = e.target.files[0]; if(!file) return;
+                    try {
+                        let json;
+                        if(file.name.endsWith('.zip')) {
+                            const zip = await JSZip.loadAsync(file);
+                            json = await zip.file("uranusfazry_backup.json").async("string");
+                        } else json = await file.text();
+                        const data = JSON.parse(json);
+                        if(data.portals) {
+                            localStorage.setItem('portals', JSON.stringify(data.portals));
+                            location.reload();
+                        }
+                    } catch(err) { showNotification('ERROR', 'Invalid file format.', 'error'); }
+                    e.target.value = '';
+                };
+            }
+
+            const countries = [
+                {
+                    region: "🌏 ASIA",
+                    countries: [
+                        { code: "62", name: "Indonesia" },
+                        { code: "60", name: "Malaysia" },
+                        { code: "65", name: "Singapore" },
+                        { code: "63", name: "Philippines" },
+                        { code: "66", name: "Thailand" },
+                        { code: "84", name: "Vietnam" },
+                        { code: "82", name: "South Korea" },
+                        { code: "81", name: "Japan" },
+                        { code: "86", name: "China" },
+                        { code: "91", name: "India" },
+                        { code: "92", name: "Pakistan" },
+                        { code: "971", name: "United Arab Emirates (UAE)" },
+                        { code: "966", name: "Saudi Arabia" },
+                        { code: "94", name: "Sri Lanka" },
+                        { code: "880", name: "Bangladesh" },
+                        { code: "98", name: "Iran" },
+                        { code: "964", name: "Iraq" },
+                        { code: "90", name: "Turkey" },
+                        { code: "856", name: "Laos" },
+                        { code: "855", name: "Cambodia" },
+                        { code: "95", name: "Myanmar" },
+                        { code: "853", name: "Macau" },
+                        { code: "852", name: "Hong Kong" }
+                    ]
+                },
+                {
+                    region: "🌍 EUROPE",
+                    countries: [
+                        { code: "44", name: "United Kingdom (UK)" },
+                        { code: "49", name: "Germany" },
+                        { code: "33", name: "France" },
+                        { code: "31", name: "Netherlands" },
+                        { code: "34", name: "Spain" },
+                        { code: "39", name: "Italy" },
+                        { code: "43", name: "Austria" },
+                        { code: "41", name: "Switzerland" },
+                        { code: "45", name: "Denmark" },
+                        { code: "46", name: "Sweden" },
+                        { code: "47", name: "Norway" },
+                        { code: "48", name: "Poland" },
+                        { code: "7", name: "Russia" },
+                        { code: "420", name: "Czech Republic" },
+                        { code: "421", name: "Slovakia" }
+                    ]
+                },
+                {
+                    region: "🌎 AMERICA",
+                    countries: [
+                        { code: "1", name: "USA / Canada" },
+                        { code: "52", name: "Mexico" },
+                        { code: "55", name: "Brazil" },
+                        { code: "54", name: "Argentina" },
+                        { code: "57", name: "Colombia" },
+                        { code: "58", name: "Venezuela" },
+                        { code: "56", name: "Chile" },
+                        { code: "51", name: "Peru" }
+                    ]
+                },
+                {
+                    region: "🌍 AFRICA",
+                    countries: [
+                        { code: "20", name: "Egypt" },
+                        { code: "212", name: "Morocco" },
+                        { code: "234", name: "Nigeria" },
+                        { code: "254", name: "Kenya" },
+                        { code: "27", name: "South Africa" },
+                        { code: "256", name: "Uganda" }
+                    ]
+                },
+                {
+                    region: "🌏 OCEANIA",
+                    countries: [
+                        { code: "61", name: "Australia" },
+                        { code: "64", name: "New Zealand" }
+                    ]
+                }
+            ];
+
+            function populateCountries() {
+                const sel = document.getElementById('wa-country-code');
+                sel.innerHTML = '';
+                countries.forEach(group => {
+                    const optgroup = document.createElement('optgroup');
+                    optgroup.label = group.region;
+                    optgroup.style.color = "var(--mlbb-blue)";
+                    optgroup.style.fontWeight = "bold";
+                    optgroup.style.backgroundColor = "#1a0033";
+
+                    group.countries.forEach(country => {
+                        const option = document.createElement('option');
+                        option.value = country.code;
+                        option.textContent = `+${country.code} (${country.name})`;
+                        option.style.color = "white";
+                        optgroup.appendChild(option);
+                    });
+                    sel.appendChild(optgroup);
+                });
+            }
+            window.showWhatsAppModal = () => document.getElementById('whatsapp-link-modal').classList.remove('hidden');
+            window.generateWhatsAppLink = () => {
+                const cc = document.getElementById('wa-country-code').value;
+                let num = document.getElementById('wa-number').value.replace(/\D/g,'');
+                if(num.startsWith('0')) num = num.substring(1);
+                if(!num) return showNotification('ERROR', 'Number required.', 'error');
+                const msg = encodeURIComponent(document.getElementById('wa-message').value);
+                const url = `https://wa.me/${cc}${num}?text=${msg}`;
+                document.getElementById('wa-result-link').value = url;
+                document.getElementById('wa-result-container').classList.remove('hidden');
+            };
+            window.copyWaLink = () => { navigator.clipboard.writeText(document.getElementById('wa-result-link').value); showNotification('COPIED', 'WA link copied.', 'success'); };
+            window.openWaLink = () => window.open(document.getElementById('wa-result-link').value, '_blank');
+
+            window.showConfirmationModal = (msg, cb) => {
+                document.getElementById('confirmation-message').innerText = msg;
+                onConfirmCallback = cb;
+                document.getElementById('confirmation-modal').classList.remove('hidden');
+            };
+
+            window.handlePortalClick = (e, i) => {
+                e.preventDefault();
+                const p = portals[i];
+                if(p.password) {
+                    currentUnlockIndex = i;
+                    document.getElementById('password-modal').classList.remove('hidden');
+                    document.getElementById('unlock-input').value = '';
+                    document.getElementById('unlock-input').focus();
+                } else window.open(p.url, '_blank');
+            };
+
+            window.submitPassword = () => {
+                const input = document.getElementById('unlock-input').value;
+                if(btoa(input) === portals[currentUnlockIndex].password) {
+                    document.getElementById('password-modal').classList.add('hidden');
+                    window.open(portals[currentUnlockIndex].url, '_blank');
+                } else showNotification('ACCESS DENIED', 'Incorrect password.', 'error');
+            };
+            window.closePasswordModal = () => document.getElementById('password-modal').classList.add('hidden');
+
+            window.deletePortal = (i) => { portals.splice(i, 1); saveData(); renderPortals(); showNotification('DELETED', 'Portal removed.', 'success'); };
+            function saveData() { localStorage.setItem('portals', JSON.stringify(portals)); }
+            
+            window.showAddLinkModal = () => document.getElementById('add-portal-modal').classList.remove('hidden');
+            window.resetAllSettings = () => { localStorage.removeItem('portals'); location.reload(); };
+            window.importData = () => document.getElementById('import-file-input').click();
+            window.backupData = async () => {
+                const zip = new JSZip();
+                zip.file("uranusfazry_backup.json", JSON.stringify({portals}, null, 2));
+                const blob = await zip.generateAsync({type:"blob"});
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = "uranusfazry_backup.zip";
+                a.click();
+            };
+
+            window.generateSmartLink = () => {
+                if(portals.length === 0) return showNotification('EMPTY', 'No data to generate.', 'error');
+                document.getElementById('smart-link-modal').classList.remove('hidden');
+                
+                const encoded = UrlManager.encode(portals);
+                const finalParam = `v5_${encoded}`;
+                
+                // Logika Kalkulasi Kapasitas (Updated)
+                const used = finalParam.length;
+                const percent = Math.min(100, Math.round((used / MAX_QR_LENGTH) * 100));
+                
+                document.getElementById('capacity-bar').style.width = percent + "%";
+                document.getElementById('capacity-text').textContent = percent + "%";
+                document.getElementById('capacity-detail').textContent = `Terpakai: ${used}/${MAX_QR_LENGTH} karakter`;
+                
+                // Update warna bar berdasarkan persentase
+                document.getElementById('capacity-bar').className = `h-full transition-all duration-500 ${percent > 90 ? 'bg-red-500' : (percent > 70 ? 'bg-yellow-400' : 'bg-cyan-400')}`;
+
+                if(used > MAX_QR_LENGTH) return showNotification('LIMIT REACHED', 'Too much data for QR.', 'error');
+
+                const url = `${location.origin}${location.pathname}?p=${finalParam}`;
+                document.getElementById('generated-smart-link').value = url;
+                
+                new QRious({ element: document.getElementById('qr-canvas-display'), value: url, size: 200, level: 'H' });
+                
+                document.getElementById('link-content').classList.add('hidden');
+                document.getElementById('btn-show-link').classList.remove('hidden');
+                document.getElementById('qr-content').classList.add('hidden');
+                document.getElementById('btn-show-qr').classList.remove('hidden');
+            };
+
+            window.revealLink = () => { document.getElementById('btn-show-link').classList.add('hidden'); document.getElementById('link-content').classList.remove('hidden'); };
+            window.revealQR = () => { document.getElementById('btn-show-qr').classList.add('hidden'); document.getElementById('qr-content').classList.remove('hidden'); };
+            window.copySmartLink = () => { navigator.clipboard.writeText(document.getElementById('generated-smart-link').value); showNotification('COPIED', 'Smart link copied.', 'success'); };
+            window.downloadHighResQR = () => {
+                const canvas = document.getElementById('qr-canvas-display');
+                const link = document.createElement('a');
+                link.download = 'fanny_portal_qr.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            };
+
+            initApp();
+        });
+    </script>
 </body>
 </html>
